@@ -30,12 +30,18 @@ namespace NotationConverter
 
         public N2 ToN2()
         {
-            throw new NotImplementedException();
+            string output = "";
+            foreach (char c in this.Number)
+            {
+                output += N2.tetradas[N16.ALPHABET.IndexOf(c)];
+            }
+            return new N2(output);
         }
 
         public N8 ToN8()
         {
-            throw new NotImplementedException();
+            N2 n2 = this.ToN2();
+            return n2.ToN8();
         }
 
         public N10 ToN10()
@@ -44,16 +50,16 @@ namespace NotationConverter
             ulong sum = 0;
             for (int i = number.Length - 1; i >= 0; i--) // position of digit in the number, start at the end
             {
-                for (int j = 0; j < ALPHABET.Length; j++)
+                for (int a = 0; a < ALPHABET.Length; a++)
                 {
-                    if (number[i] == ALPHABET[j]) // value on position i
+                    if (number[i] == ALPHABET[a]) // value on position i
                     {
                         ulong P = 1;
                         for (int power = 1; power <= number.Length - 1 - i; power++)
                         {
                             P *= BASE;
                         }
-                        sum += (ulong)j * P;
+                        sum += (ulong)a * P;
                     }
                 }
             }

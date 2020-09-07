@@ -12,7 +12,5 @@ namespace NotationConverter
         N8 ToN8();
         N10 ToN10();
         N16 ToN16();
-
-
     }
 }

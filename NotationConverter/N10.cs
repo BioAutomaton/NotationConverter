@@ -54,9 +54,9 @@ namespace NotationConverter
                 input /= N8.BASE;
             }
             output += input.ToString();
-            char[] toReverse = output.ToCharArray();
-            Array.Reverse(toReverse);
-            return new N8(new string(toReverse));
+            char[] reversedOutput = output.ToCharArray();
+            Array.Reverse(reversedOutput);
+            return new N8(new string(reversedOutput));
         }
 
         public N10 ToN10()
@@ -73,7 +73,7 @@ namespace NotationConverter
                 output += N16.ALPHABET[(int)(input % N16.BASE)];
                 input /= N16.BASE;
             }
-            output += input.ToString();
+            output += N16.ALPHABET[(int)input];
             char[] toReverse = output.ToCharArray();
             Array.Reverse(toReverse);
             return new N16(new string(toReverse));

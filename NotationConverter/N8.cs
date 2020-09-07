@@ -33,8 +33,12 @@ namespace NotationConverter
 
         public N2 ToN2()
         {
-            /*TODO*/
-            throw new NotImplementedException();
+            string output = "";
+            foreach (char c in this.Number)
+            {
+                output += N2.triadas[Convert.ToInt32(c.ToString())];
+            }
+            return new N2(output);
         }
 
         public N8 ToN8()
@@ -44,12 +48,30 @@ namespace NotationConverter
 
         public N10 ToN10()
         {
-            throw new NotImplementedException();
+            // FORMULA: SUM = A[i] * P^i
+            ulong sum = 0;
+            for (int i = number.Length - 1; i >= 0; i--) // position of digit in the number, start at the end
+            {
+                for (int a = 0; a < ALPHABET.Length; a++)
+                {
+                    if (number[i] == ALPHABET[a]) // value on position i
+                    {
+                        ulong P = 1;
+                        for (int power = 1; power <= number.Length - 1 - i; power++)
+                        {
+                            P *= BASE;
+                        }
+                        sum += (ulong)a * P;
+                    }
+                }
+            }
+            return new N10(sum.ToString());
         }
 
         public N16 ToN16()
         {
-            throw new NotImplementedException();
+            N2 n2 = this.ToN2();
+            return n2.ToN16();
         }
     }
 }

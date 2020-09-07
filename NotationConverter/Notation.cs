@@ -1,6 +1,6 @@
 ﻿namespace NotationConverter
 {
-    abstract class Notation
+    abstract class Notation : INotation
     {
         private const string ALPHABET = "";
         private string number = "";
@@ -32,6 +32,26 @@
 
             /*if all chars do fit, return true*/
             return isCorrect;
+        }
+
+        public N10 ToN10()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public N16 ToN16()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public N2 ToN2()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public N8 ToN8()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
