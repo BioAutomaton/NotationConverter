@@ -46,20 +46,21 @@ namespace NotationConverter
 
         public N10 ToN10()
         {
-            // FORMULA: SUM = A[i] * P^i
+            
             ulong sum = 0;
-            for (int i = number.Length - 1; i >= 0; i--) // position of digit in the number, start at the end
+            for (int i = 0; i < number.Length; i++) // position of digit in the number
             {
                 for (int a = 0; a < ALPHABET.Length; a++)
                 {
                     if (number[i] == ALPHABET[a]) // value on position i
                     {
                         ulong P = 1;
-                        for (int power = 1; power <= number.Length - 1 - i; power++)
+                        for (int power = 1; power < number.Length - i; power++)
                         {
                             P *= BASE;
                         }
                         sum += (ulong)a * P;
+                        break;
                     }
                 }
             }
